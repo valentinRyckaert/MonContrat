@@ -1,0 +1,177 @@
+<!--
+    projet : formulaire-django
+    Auteur : Valentin Ryckaert
+    Application : Formulaire
+    page : contrat.html
+-->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- importation des urls des fichiers CSS et Javascript -->
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrat de Partenariat Commercial</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <!-- librairie Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'main' %}">
+                MonContrat
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'Formulaire:contrat'%}">
+                            Générateur de contrat
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'presentation'%}">
+                            Qui sommes-nous ?
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'infos'%}">
+                            Infos Pratiques
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'BaseDonnee:recherche'%}">
+                            Base de donnée
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="shadow p-5 mx-5 bg-body rounded">
+        <div class="centered">
+            <h1>Formulaire de contrat</h1>
+            <br>
+            <p>Remplissez le formulaire puis cliquez sur 'générer mon contrat'</p>
+            <p>Lorsque vous générez le contrat, celui-ci est automatiquement enregistré dans notre base de donnée</p>
+            <p>La clef est générée aléatoirement et permet d'identifier votre formulaire. Gardez-la précieusement. Même
+                s'il est possible de la modifier, <b>nous vous conseillons de ne pas utiliser une clef simple afin
+                    d'éviter que d'autres utilisateurs n'aient accès à votre contrat.</b></p>
+            <!-- Appel de Bill -->
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#billModal">
+                Appeller Bill
+            </button>
+            <br><br>
+            <!-- message d'erreur de saisie -->
+            {% if erreur %}
+            <p><i>Il semble y avoir un problème avec les données. Vérifiez si les dates et les nombres ont bien été
+                    entrés. Si c'est le cas, modifiez un caractère de la clef d'identification, il est possible que
+                    celle-ci soit déjà utilisée pour un autre formulaire.</i></p>
+            {% endif %}
+        </div>
+        <br><br>
+        <!-- formulaire pour le contrat -->
+        <form method="post">
+            {% csrf_token %}
+            <label>Date de signature du contrat :</label>
+            {{form.date_signature}} (sous la forme jj/mm/aaaa)
+            <br><br>
+
+            <label>Lieu de signature du contrat :</label>
+            {{form.lieu_signature}}
+            <br><br>
+
+            <label>Nom sous lequel le partenariat est exercé :</label>
+            {{form.nom_exerce}}
+            <br><br>
+
+            <label>Liste des partenaires (un par ligne) :</label><br>
+            {{form.partenaires}}
+            <br><br>
+
+            <label>Nature des activités :</label><br>
+            {{form.activites}}
+            <br><br>
+
+            <label>Adresse officielle du siège :</label><br>
+            Adresse : {{form.adresse}}<br>
+            Code postal : {{form.code_postal}}<br>
+            Ville : {{form.ville}}
+            <br><br>
+
+            <label>Date du début du partenariat :</label>
+            {{form.date_debut}} (sous la forme jj/mm/aaaa)
+            <br><br>
+
+            <label>Contribution de chaque partenaire au capital (un par ligne) :</label><br>
+            {{form.contribution}}
+            <br><br>
+
+            <label>Partage des profits et des pertes :</label><br>
+            {{form.partage_profit}}
+            <br><br>
+
+            <label>Pourcentage minimum de signataires pour les chèque :</label>
+            {{form.pourcentage_cheques}}
+            <br><br>
+
+            <label>Temps pendant lequel un ex-partenaire ne peut travailler dans une entreprise concurrente :</label>
+            {{form.temps_retrait}}
+            <br><br>
+
+            <label>Etat dont les lois régissent le contrat :</label>
+            {{form.etat_lois}}
+            <br><br>
+
+            <label>Nom de l'avocat :</label>
+            {{form.avocat}}
+            <br><br>
+
+            <label>Clef d'identification :</label>
+            {{form.clef}}
+            <br><br>
+
+            <br>
+            <button type="submit" class="btn btn-dark">Générer mon contrat</button>
+            <br><br>
+        </form>
+    </div>
+    <!-- Boite de dialogue de Bill -->
+    <div class="modal fade" id="billModal" tabindex="-1" aria-labelledby="billLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="billLabel">Bill</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Remplissez les champs du formulaire puis cliquez sur générer mon contrat pour afficher votre
+                        formlaire.<br>Pas besoin de compte ! Gardez la clef d'identification préciseusement pour
+                        retrouver plus tard votre formulaire.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok Bill</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

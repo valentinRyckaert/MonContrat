@@ -1,0 +1,158 @@
+<!--
+    projet : formulaire-django
+    Auteur : Valentin Ryckaert
+    Application : principale
+    page : infos.html
+-->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <!-- importation des urls des fichiers CSS et Javascript -->
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contrat de Partenariat Commercial</title>
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/general.css' %}">
+  <!-- librairie Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- barre de navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">MonContrat</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'Formulaire:contrat'%}">Générateur de
+              contrat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'presentation'%}">Qui sommes-nous ?</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'infos'%}">
+              Infos Pratiques
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="{% url 'BaseDonnee:recherche'%}">
+              Base de donnée
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <!-- accordion -->
+  <div class="shadow p-5 mx-5 bg-body rounded">
+    <h1 class="centered">Infos Pratiques</h1>
+    <br>
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+            aria-controls="panelsStayOpen-collapseOne">
+            Qu'est-ce qu'un contrat de partenariat commercial ?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+          <div class="accordion-body">
+            Un contrat de partenariat commercial est un accord formel entre deux parties, généralement des entreprises,
+            qui établit les termes et conditions régissant leur collaboration commerciale. Ce type de contrat vise à
+            définir clairement les droits, les responsabilités et les obligations de chaque partie, qu'il s'agisse de la
+            distribution de produits, de la prestation de services, ou d'autres formes de coopération. Il sert de cadre
+            juridique solide pour établir une relation commerciale mutuellement bénéfique tout en minimisant les risques
+            potentiels. Ces contrats sont essentiels pour instaurer la confiance et la transparence entre les
+            partenaires commerciaux.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseTwo">
+            Où trouver un avocat ?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Lorsqu'il s'agit de rédiger ou de négocier un contrat de partenariat commercial, il est crucial de faire
+            appel à un avocat spécialisé en droit des affaires. Un professionnel expérimenté dans ce domaine peut
+            fournir des conseils juridiques adaptés à vos besoins spécifiques, garantissant ainsi que votre contrat est
+            conforme à la législation en vigueur. Pour simplifier ce processus, nous recommandons le site Justifit (<a
+              href="https://www.justifit.fr/trouver/avocats/france/droit-commercial-et-de-la-concurrence/"
+              target="_blank">voir le site</a>). Justifit est une plateforme en ligne qui met en relation les
+            entrepreneurs avec des avocats spécialisés, offrant des services juridiques accessibles et adaptés aux
+            besoins spécifiques du monde des affaires.
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+            data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+            aria-controls="panelsStayOpen-collapseThree">
+            Comment signer numériquement mon contrat ?
+          </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+          <div class="accordion-body">
+            Dans le contexte des transactions commerciales, la gestion efficace des documents est essentielle. C'est là
+            que Docusing entre en jeu. Docusing est une plateforme de gestion de documents en ligne qui simplifie et
+            accélère la création, la signature et le suivi des contrats. Avec des fonctionnalités conviviales, telles
+            que la signature électronique et le stockage sécurisé des documents, Docusing offre une solution complète
+            pour simplifier vos processus documentaires. Facilitez la collaboration, réduisez les délais et améliorez
+            l'efficacité globale de votre entreprise avec Docusing (<a
+              href="https://www.docusign.com/fr-fr/essai/gratuit?elqCampaignId=15147&msclkid=9f3940561f321b661aa82512b49a9dbe"
+              target="_blank">voir le site</a>).
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <!-- Appel de Bill -->
+    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#bill">
+      Appeller Bill
+    </button>
+  </div>
+  <!-- Boite de dialogue -->
+  <div class="modal fade" id="bill" tabindex="-1" aria-labelledby="billLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="billLabel">Bill</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Je suis tout seul sur le site... Alors j'ai codé un accordion pour m'amuser (ne le dites pas à mon
+            programmeur, il ne sait pas que je n'en ai mis un).<br>Vous y trouverez des informations intéressantes
+            concernant les contrats de partenariat commercial.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok Bill</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,189 @@
+<!--
+    projet : formulaire-django
+    Auteur : Valentin Ryckaert
+    Application : Formulaire
+    page : validation.html
+-->
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+
+<head>
+    <!-- importation des urls des fichiers CSS et Javascript -->
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrat de Partenariat Commercial</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cache.css' %}">
+    <!-- librairie Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+        crossorigin="anonymous"></script>
+    <!-- Javascript -->
+    <script type="text/javascript" src="{% static 'Javascript/valid_suppr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Javascript/copie.js' %}"></script>
+</head>
+
+<body>
+    <div class="no-print">
+        <!-- barre de navigation (non imprimée) -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">MonContrat</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'Formulaire:contrat'%}">
+                                Générateur de contrat
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'presentation'%}">
+                                Qui sommes-nous ?
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'infos'%}">
+                                Infos Pratiques
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'BaseDonnee:recherche'%}">
+                                Base de donnée
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br>
+    </div>
+    <br>
+    <!-- affichage du contrat (imprimé) -->
+    <div class="p-2 mx-2">
+        <h1 class="centered">Contrat de Partenariat Commercial</h1>
+        <br><br>
+        <p>Ce contrat est fait le {{Form.date_signature}} en {{ copies }} copies originales, entre :</p>
+        <ul>
+            {% for partenaire in liste_partenaires %}
+            <li>{{ partenaire }}</li>
+            {% endfor %}
+        </ul>
+        <h5>1. NOM DU PARTENARIAT ET ACTIVITE</h5>
+        <h6>1.1 Nature des activités : Les Partenaires cités ci-dessus donnent leur accord d'être considérés comme des
+            partenaires commerciaux pour les fins suivantes : </h6>
+        <p>{{ Form.activites }}</p>
+        <h6>1.2 Nom : Les Partenaires cités ci-dessus donnent leur accord, pour que le partenariat commercial soit
+            exercé sous le nom : </h6>
+        <p>{{ Form.nom_exerce }}</p>
+        <h6>1.3 Adresse officielle : Les Partenaires cités ci-dessus donnent leur accord pour que le siège du
+            partenariat commercial soit : </h6>
+        <p>{{ Form.adresse }}, {{ Form.code_postal }}, {{ Form.ville }}</p>
+
+        <h5>2. TERMES</h5>
+        <h6>2.1 Le partenariat commence le {{ Form.date_debut }} et continue jusqu'à la fin de cet accord.</h6>
+
+        <h5>3. CONTRIBUTION AU PARTENARIAT</h5>
+        <h6>3.1 La contribution de chaque partenaire au capital se compose des éléments suivants :</h6>
+        <ul>
+            {% for contribu in liste_contribution %}
+            <li>{{ contribu }}</li>
+            {% endfor %}
+        </ul>
+
+        <h5>4. RÉPARTITION DES BÉNÉFICES ET DES PERTES</h5>
+        <h6>4.1 Les Partenaires se partageront les profits et les pertes du partenariat commercial de la manière
+            suivante :</h6>
+        <p>{{ Form.partage_profit }}</p>
+
+        <h5>5. PARTENAIRES ADDITIONNELS</h5>
+        <h6>5.1 Aucune personne ne peut être ajoutée en tant que partenaire et aucune autre autre activité ne peut être
+            menée par le partenariat sans le consentement écrit de tous les partenaires.</h6>
+
+        <h5>6. MODALITÉS BANCAIRES ET TERMES FINANCIERS</h5>
+        <h6>6.1 Les Partenaires doivent avoir un compte bancaire au nom du partenariat sur lequel les chèques doivent
+            être signés par au moins {{ Form.pourcentage_cheques }} % des Partenaires.</h6>
+        <h6>6.2 Les Partenaires doivent tenir une comptabilité complète du partenariat et la rendre disponible à tous
+            les Partenaires à tout moment.</h6>
+
+        <h5>7. GESTION DES ACTIVITÉS DE PARTENARIAT</h5>
+        <h6>7.1 Chaque partenaire peut prendre part dans la gestion du partenariat.</h6>
+        <h6>7.2 Tout désaccord qui intervient dans l'exploitation du partenariat, sera réglé par les partenaires
+            détenant la majorité des parts du partenariat.</h6>
+
+        <h5>8. DÉPART D'UN PARTENAIRE COMMERCIAL</h5>
+        <h6>8.1 Si un partenaire se retire du partenariat commercial pour une raison quelconque, y compris le décès, les
+            autres partenaires peuvent continuer à exploiter le partenariat sous le même nom.</h6>
+        <h6>8.2 Le partenaire qui se retire est tenu de donner un préavis écrit d'au moins soixante (60) jours de son
+            intention de se retirer et est tenu de vendre ses parts du partenariat commercial.</h6>
+        <h6>8.3 Aucun partenaire ne doit céder ses actions dans le partenariat commercial à une autre partie sans le
+            consentement écrit des autres partenaires.</h6>
+        <h6>8.4 Le ou les partenaires restants paieront au partenaire qui se retire, ou au représentant légal du
+            partenaire décédé ou handicapé, la valeur de ses parts dans le partenariat, ou (a) la somme de son capital,
+            (b) des emprunts impayés qui lui sont dus, (c) sa quote-part des bénéfices nets cumulés non distribués dans
+            son compte, et (d) son intérêt dans toute plus-value préalablement convenue de la valeur du partenariat par
+            rapport à sa valeur comptable. Aucune valeur de bonne volonté ne doit être incluse dans la détermination de
+            la valeur des parts du partenaire.</h6>
+
+        <h5>9. CLAUSE DE NON CONCURRENCE</h5>
+        <h6>9.1 Un partenaire qui se retire du partenariat ne doit pas s'engager directement ou indirectement dans une
+            entreprise qui est ou serait en concurrence avec la nature des activités actuelles ou futures du partenariat
+            pendant {{ temps_retrait }}.</h6>
+
+        <h5>10. MODIFICATION DE L'ACCORD DE PARTENARIAT</h5>
+        <h6>10.1 Ce contrat de partenariat commercial ne peut être modifié sans le consentement écrit de tous les
+            partenaires.</h6>
+
+        <h5>11. DIVERS</h5>
+        <h6>11.1 Si une disposition ou une partie d'une disposition de la présente convention de partenariat commercial
+            est non applicable pour une quelconque raison, elle sera dissociée sans affecter la validité du reste de la
+            convention.</h6>
+        <h6>11.2 Cet accord de partenariat commercial lie les partenaires commerciaux et pourra servir à leurs
+            héritiers, exécuteurs testamentaires, administrateurs, représentants personnels, successeurs et ayants droit
+            respectifs.</h6>
+
+        <h5>12. JURIDICTION</h5>
+        <h6>12.1 Le présent contrat de partenariat commercial est régi par les lois de l'État {{ Form.etat_lois }}.</h6>
+
+        <p>Solennellement affirmé à {{ Form.lieu_signature }}</p>
+        <p>Daté de ce jour {{ Form.date_signature }}</p>
+        <p>Signé, validé et livré en présence de :</p>
+        <ul>
+            {% for partenaire in liste_partenaires %}
+            <li>{{ partenaire }}</li><br><br><br>
+            {% endfor %}
+        </ul>
+        <p>Par moi : {{ Form.avocat }}</p>
+        <br><br><br><br>
+        <!-- bouttons CRUD (non imprimés) -->
+        <div class="no-print">
+            clef d'identifiaction : {{ Form.clef }}
+            <button class="btn btn-secondary" type="button" onclick="copie('{{Form.clef}}')">copier dans le
+                presse-papier</button><br><br>
+            <button OnClick="javascript:window.print()" class="btn btn-success">Enregistrer en PDF</button><br><br>
+            <a href="{% url 'Formulaire:existContrat' Form.clef %}"><button class="btn btn-primary">Retourner au
+                    formulaire</button></a><br><br>
+            <button class="btn btn-danger" onclick="afficherValid()">Supprimmer le formulaire</button><br><br>
+            <div id="cacher_valid">
+                <p>êtes-vous bien sûr de vouloir supprimer ?</p>
+                <a href="{% url 'BaseDonnee:suppression' Form.clef %}"><button
+                        class="btn btn-dark">Oui</button></a><br><br>
+            </div>
+            <a href="{% url 'main' %}"><button class="btn btn-dark">Retour au menu</button></a><br><br>
+        </div>
+        <br><br><br>
+    </div>
+</body>
+
+</html>

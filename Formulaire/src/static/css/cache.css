@@ -1,0 +1,13 @@
+/* éléments à cacher lors de l'impression */
+@media print {
+
+    .no-print,
+    .no-print * {
+        display: none !important;
+    }
+}
+
+/* éléments cachés si la suppression n'est pas demandée */
+#cacher_valid {
+    display: none;
+}

@@ -1,0 +1,106 @@
+<!--
+    projet : formulaire-django
+    Auteur : Valentin Ryckaert
+    Application : principale
+    page : main.html
+-->
+
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- importation des urls des fichiers CSS et Javascript -->
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrat de Partenariat Commercial</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <!-- librairie Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!-- barre de navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'main' %}">MonContrat</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'Formulaire:contrat'%}">
+                            Générateur de contrat
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'presentation'%}">
+                            Qui sommes-nous ?
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'infos'%}">
+                            Infos Pratiques
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'BaseDonnee:recherche'%}">
+                            Base de donnée
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <!-- corps de la page -->
+    <div class="shadow p-5 mx-5 bg-body rounded centered">
+        <h1>Bienvenue sur MonContrat</h1><br>
+        <p>Ce site vous permet de créer des contrats de partenariat commercial</p>
+        <br>
+        <p>Si vous souhaitez créer un contrat, cliquez sur 'générateur de contrat' sur la barre de navigation</p>
+        <br>
+        <p>Si vous souhaitez chercher un contrat que vous avez créé, cliquez sur 'base de donnée' sur la barre de
+            navigation</p>
+        <br>
+        <p>Ce site n'utilise pas un système de compte mais un système de clef, rendant plus simple la récupération des
+            données</p>
+        <br>
+        <p>Ce site est habité !! Essayez d'appeller Bill, notre 'dialog-bot'. Il vous donnera des informations
+            intéressantes.</p>
+        <!-- Appel de Bill -->
+        <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#bill">
+            Appeller Bill
+        </button>
+    </div>
+    <!-- Boite de dialogue -->
+    <div class="modal fade" id="bill" tabindex="-1" aria-labelledby="billLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="billLabel">Bill</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Benvenue sur le site !!<br>Je suis Bill, pour vous servir.<br>Si vous avez besoin d'explication,
+                        n'hésitez pas à m'appeller !
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok Bill</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
