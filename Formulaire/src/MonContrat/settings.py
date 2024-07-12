@@ -20,7 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Formulaire',
-    'BaseDonnee'
+    'BaseDonnee',
+    'bootstrap5'
 ]
 
 MIDDLEWARE = [
