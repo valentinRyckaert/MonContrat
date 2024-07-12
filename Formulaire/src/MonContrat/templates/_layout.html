@@ -10,12 +10,15 @@
 
 <head>
     <!-- importation des urls des fichiers CSS et Javascript -->
-    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contrat de Partenariat Commercial</title>
+    <!-- fichiers javascript éventuels -->
+    {% block javascriptFilesIfAny %}
+        {% load static %}
+    {% endblock %}
     <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <!-- librairie Bootstrap -->
     {% load bootstrap5 %}
     {% bootstrap_css %}
