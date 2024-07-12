@@ -1,6 +1,6 @@
 ## Lancer le projet
 ```bash
-cd formulaire-django/Formulaire/
+cd MonContrat/Formulaire/
 python3 -m venv .env
 source .env/bin/activate
 pip install -r requirements.txt
